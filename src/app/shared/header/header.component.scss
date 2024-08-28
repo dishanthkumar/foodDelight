@@ -1,8 +1,14 @@
 .navbar{
     background-color: var(--primary) !important;
+    color: var(--dark) !important;
     font-size: 20px;
-}
 
-.nav-item{
-    padding: 0.2em 0.5em;
+    .nav-item{
+        padding: 0.2em 0.5em;
+    }
+
+    .active{
+        border-bottom: 2px solid var(--dark);
+        padding-bottom: 0.5em;
+    }
 }

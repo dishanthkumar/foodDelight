@@ -11,15 +11,19 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Dashboard</a>
+            <a class="nav-link" href="#" [routerLink]="['dashboard']" routerLinkActive="active">Dashboard</a>
           </li>
 
           <li class="nav-item">
-            <a class="nav-link" href="#" [routerLink]="['restaurants']">Restaurants</a>
+            <a class="nav-link" href="#" [routerLink]="['restaurants']" routerLinkActive="active">Restaurants</a>
           </li>
 
           <li class="nav-item">
-            <a class="nav-link" href="#" [routerLink]="['restaurants']">Menus</a>
+            <a class="nav-link" href="#" [routerLink]="['menus']" routerLinkActive="active">Menus</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="#" [routerLink]="['about']" routerLinkActive="active">About</a>
           </li>
 
         </ul>
