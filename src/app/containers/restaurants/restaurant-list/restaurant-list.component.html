@@ -1,1 +1,53 @@
-<p>restaurant-list works!</p>
+<div class="row">
+    <div class="col-md-12">
+        <h3 class="text-center py-2">Restaurants List</h3>
+
+        <table class="table table-striped">
+            <thead>
+                <tr class="text-uppercase">
+                    <th>ID</th>
+                    <th>Title</th>
+                    <th>Description</th>
+                    <th>Address</th>
+                    <th>City</th>
+                    <th>State</th>
+                    <th>postalCode</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let i of Restaurants$ | async; let ind = index">
+                    <td>{{ind+1}}</td>
+                    <td>{{i.name}}</td>
+                    <td>{{i.description}}</td>
+                    <td>{{i.location?.address}}</td>
+                    <td>{{i.location?.city}}</td>
+                    <td>{{i.location?.state}}</td>
+                    <td>{{i.location?.postalCode}}</td>
+                    <td>
+                        <a href="#" [routerLink]="['edit',i.id]" class="btn btn-primary">Edit</a>
+                        &nbsp;
+                        <button class="btn btn-danger" (click)="i.id ? deleteItem(i.id): ''">Remove</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <nav>
+        <ul class="pagination">
+            <li class="page-item">
+                <a class="page-link" href="#">First</a>
+            </li>
+            <li class="page-item">
+                <a class="page-link" href="#">Previous</a>
+            </li>
+            <li class="page-item">
+                <a class="page-link" href="#">Next</a>
+            </li>
+            <li class="page-item">
+                <a class="page-link" href="#">Last</a>
+            </li>
+        </ul>
+      </nav>
+</div>
