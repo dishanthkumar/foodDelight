@@ -13,22 +13,47 @@ import { AppState } from 'src/app/store/app.state';
 })
 
 export class RestaurantListComponent {
-  Restaurants$!:Observable<RestaurantDetail[]>;
+  Restaurants!:RestaurantDetail[];
   count!:number;
+  tableData!: RestaurantDetail[];
+  filteredData!: RestaurantDetail[];
+
+  recordsPerPage: number = 5;
+  currPage:number = 1;
+  maxPageCount!: number;
+
+  searchTerm: string= '';
+
 
   constructor(
-    private store: Store<AppState>,
-    private router: Router
+    private store: Store<AppState>
   ){
   }
 
   ngOnInit(){
-    this.Restaurants$ = this.store.pipe(
-      map((res) =>  res.RES_STORE.list)
-    );
+    this.store.subscribe((res)=>{
+      this.Restaurants = res.RES_STORE.list;
+      this.count = res.RES_STORE.count;
+      this.searchRecords();
+    })
   }
 
   deleteItem(i: RestaurantDetail){
     this.store.dispatch(deleteExisting({id: i.id}));
+  }
+
+  searchRecords(){
+    this.filteredData = this.Restaurants.filter(i=>{
+      return i.name.toLowerCase().includes(this.searchTerm.toLowerCase()) || i.description?.toLowerCase().includes(this.searchTerm.toLowerCase())
+    })
+    this.goToPage(1);
+  }
+
+  goToPage(pageNumber: number){
+    this.maxPageCount = Math.ceil(this.filteredData.length/this.recordsPerPage)
+    this.currPage = pageNumber;
+    const start = (pageNumber-1)*this.recordsPerPage;
+    const end = Math.min(start+this.recordsPerPage, this.filteredData.length);
+    this.tableData = this.filteredData.slice(start, end)
   }
 }

@@ -1,3 +1,19 @@
 .page-link{
     color: var(--primary-dark) !important;
 }
+
+.btn{
+    border-color: var(--primary) !important;
+}
+
+.btn-primary{
+    background-color: #848c74;
+
+    &:hover{
+        background-color: #525d4b;
+    }
+}
+
+.btn:disabled{
+    background-color: #b4bdab;
+}

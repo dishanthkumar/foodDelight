@@ -6,9 +6,11 @@ import { RestaurantDetail } from "../models/restaurants.model";
 const ResReducer  = createReducer(
     ResInitialState,
     on(addNew, (state: ResState, props: RestaurantDetail)=>{
+        const newList = [props,...state.list]
         return {
-            count: state.count,
-            list: [...state.list, props]
+            ...state,
+            count: newList.length,
+            list: newList
         }
     }),
     on(updateExisting, (state: ResState, props: RestaurantDetail)=>{

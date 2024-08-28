@@ -1,5 +1,6 @@
   <div class="d-flex justify-content-center align-items-center m-4">
     <form [formGroup]="restaurantForm" class="w-50 p-4" (ngSubmit)="onSubmit()">
+        <h2 class="text-center mb-4">{{savedFormData ? 'Edit' : 'Add New'}} Restaurant </h2>
         <div class="mb-3">
             <label for="name" class="form-label">Restaurant Name</label>
             <input type="text" id="name" formControlName="name" class="form-control" />
@@ -17,7 +18,6 @@
         </div>
 
         <div formGroupName="location">
-            <h5>Location Details</h5>
 
             <div class="mb-3">
                 <label for="address" class="form-label">Address</label>
@@ -66,6 +66,10 @@
             <input type="url" id="websiteURL" formControlName="websiteURL" class="form-control" />
         </div>
 
-        <button type="submit" class="btn btn-primary" [disabled]="restaurantForm.invalid">Submit</button>
+        <div class="d-flex justify-content-end mt-4">
+            <button type="submit" class="btn btn-primary px-2 me-2" [disabled]="restaurantForm.invalid">Submit</button>
+            <a type="submit" class="btn btn-primary px-2 me-2" [routerLink]="['/restaurants']">Cancel</a>
+        </div>
+        
     </form>
 </div>

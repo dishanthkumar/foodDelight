@@ -8,7 +8,7 @@ export interface ResState {
 
 export const ResInitialState = {
     list: savedList,
-    count: 2
+    count: savedList.length
 };
 export interface AppState{
     'RES_STORE': ResState
