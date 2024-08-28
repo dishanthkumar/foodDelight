@@ -1,11 +1,12 @@
 <div class="row">
     <div class="col-md-12">
         <h3 class="text-center py-2">Restaurants List</h3>
+        <a href="#" [routerLink]="['add-restaurant']" class="btn btn-primary">Add new</a>
 
         <table class="table table-striped">
             <thead>
-                <tr class="text-uppercase">
-                    <th>ID</th>
+                <tr class="text-uppercase text-center">
+                    <th>No.</th>
                     <th>Title</th>
                     <th>Description</th>
                     <th>Address</th>
@@ -16,8 +17,8 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let i of Restaurants$ | async; let ind = index">
-                    <td>{{ind+1}}</td>
+                <tr *ngFor="let i of Restaurants$ | async; let ind = index" class="text-center">
+                    <td>{{ind}}</td>
                     <td>{{i.name}}</td>
                     <td>{{i.description}}</td>
                     <td>{{i.location?.address}}</td>
@@ -25,9 +26,9 @@
                     <td>{{i.location?.state}}</td>
                     <td>{{i.location?.postalCode}}</td>
                     <td>
-                        <a href="#" [routerLink]="['edit',i.id]" class="btn btn-primary">Edit</a>
+                        <a href="#" [routerLink]="['edit', i.id]" class="btn btn-primary">Edit</a>
                         &nbsp;
-                        <button class="btn btn-danger" (click)="i.id ? deleteItem(i.id): ''">Remove</button>
+                        <button class="btn btn-danger" (click)="deleteItem(i)">Remove</button>
                     </td>
                 </tr>
             </tbody>

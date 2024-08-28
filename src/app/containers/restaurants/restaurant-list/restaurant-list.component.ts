@@ -1,7 +1,11 @@
 import { Component } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
+import { map, Observable } from 'rxjs';
 import { RestaurantDetail } from 'src/app/models/restaurants.model';
 import { ApisService } from 'src/app/services/apis.service';
+import { deleteExisting } from 'src/app/store/app.actions';
+import { AppState } from 'src/app/store/app.state';
 
 export interface PeriodicElement {
   name: string;
@@ -29,19 +33,22 @@ const ELEMENT_DATA: PeriodicElement[] = [
 })
 
 export class RestaurantListComponent {
-  tableData: RestaurantDetail[] = [];
-  Restaurants$!: Observable<RestaurantDetail[]>;
-  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
-  dataSource = ELEMENT_DATA;
+  Restaurants$!:Observable<RestaurantDetail[]>;
+  count!:number;
 
-  constructor(private api: ApisService){
+  constructor(
+    private store: Store<AppState>,
+    private router: Router
+  ){
   }
 
   ngOnInit(){
-    this.Restaurants$ = this.api.getRestaurantList();
+    this.Restaurants$ = this.store.pipe(
+      map((res) =>  res.RES_STORE.list)
+    );
   }
 
-  deleteItem(id: string){
-
+  deleteItem(i: RestaurantDetail){
+    this.store.dispatch(deleteExisting({id: i.id}));
   }
 }

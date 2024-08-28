@@ -1,61 +1,71 @@
-<form [formGroup]="restaurantForm" (ngSubmit)="onSubmit()">
-    <div class="mb-3">
-      <label for="name" class="form-label">Restaurant Name</label>
-      <input type="text" id="name" formControlName="name" class="form-control" />
-      <div *ngIf="restaurantForm.get('name')?.invalid && restaurantForm.get('name')?.touched" class="text-danger">
-    <small *ngIf="restaurantForm.get('name')?.errors?.['required']">Name is required.</small>
-      </div>
-    </div>
-  
-    <div class="mb-3">
-      <label for="description" class="form-label">Description</label>
-      <textarea id="description" formControlName="description" class="form-control" rows="3"></textarea>
-    </div>
-  
-    <div formGroupName="location">
-      <h5>Location Details</h5>
-  
-      <div class="mb-3">
-        <label for="address" class="form-label">Address</label>
-        <input type="text" id="address" formControlName="address" class="form-control" />
-        <div *ngIf="restaurantForm.get('location.address')?.invalid && restaurantForm.get('location.address')?.touched" class="text-danger">
-          <small>Address is required.</small>
+  <div class="d-flex justify-content-center align-items-center m-4">
+    <form [formGroup]="restaurantForm" class="w-50 p-4" (ngSubmit)="onSubmit()">
+        <div class="mb-3">
+            <label for="name" class="form-label">Restaurant Name</label>
+            <input type="text" id="name" formControlName="name" class="form-control" />
+            <div *ngIf="restaurantForm.get('name')?.invalid && restaurantForm.get('name')?.touched" class="text-danger">
+                <small *ngIf="restaurantForm.get('name')?.errors?.['required']">Name is required.</small>
+            </div>
         </div>
-      </div>
-  
-      <div class="row">
-        <div class="col-md-6 mb-3">
-          <label for="city" class="form-label">City</label>
-          <input type="text" id="city" formControlName="city" class="form-control" />
-          <div *ngIf="restaurantForm.get('location.city')?.invalid && restaurantForm.get('location.city')?.touched" class="text-danger">
-            <small>City is required.</small>
-          </div>
+
+        <div class="mb-3">
+            <label for="description" class="form-label">Description</label>
+            <textarea id="description" formControlName="description" class="form-control" rows="3"></textarea>
+            <div *ngIf="restaurantForm.get('description')?.invalid && restaurantForm.get('description')?.touched" class="text-danger">
+                <small *ngIf="restaurantForm.get('description')?.errors?.['required']">Description is required.</small>
+            </div>
         </div>
-  
-        <div class="col-md-6 mb-3">
-          <label for="state" class="form-label">State</label>
-          <input type="text" id="state" formControlName="state" class="form-control" />
-          <div *ngIf="restaurantForm.get('location.state')?.invalid && restaurantForm.get('location.state')?.touched" class="text-danger">
-            <small>State is required.</small>
-          </div>
+
+        <div formGroupName="location">
+            <h5>Location Details</h5>
+
+            <div class="mb-3">
+                <label for="address" class="form-label">Address</label>
+                <input type="text" id="address" formControlName="address" class="form-control" />
+                <div *ngIf="restaurantForm.get('location.address')?.invalid && restaurantForm.get('location.address')?.touched"
+                    class="text-danger">
+                    <small>Address is required.</small>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label for="city" class="form-label">City</label>
+                    <input type="text" id="city" formControlName="city" class="form-control" />
+                    <div *ngIf="restaurantForm.get('location.city')?.invalid && restaurantForm.get('location.city')?.touched"
+                        class="text-danger">
+                        <small>City is required.</small>
+                    </div>
+                </div>
+
+                <div class="col-md-6 mb-3">
+                    <label for="state" class="form-label">State</label>
+                    <input type="text" id="state" formControlName="state" class="form-control" />
+                    <div *ngIf="restaurantForm.get('location.state')?.invalid && restaurantForm.get('location.state')?.touched"
+                        class="text-danger">
+                        <small>State is required.</small>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label for="postalCode" class="form-label">Postal Code</label>
+                <input type="text" id="postalCode" formControlName="postalCode" class="form-control" />
+                <div *ngIf="restaurantForm.get('location.postalCode')?.invalid && restaurantForm.get('location.postalCode')?.touched"
+                    class="text-danger">
+                    <small *ngIf="restaurantForm.get('location.postalCode')?.errors?.['required']">Postal Code is
+                        required.</small>
+                    <small *ngIf="restaurantForm.get('location.postalCode')?.errors?.['pattern']">Invalid postal code
+                        format.</small>
+                </div>
+            </div>
         </div>
-      </div>
-  
-      <div class="mb-3">
-        <label for="postalCode" class="form-label">Postal Code</label>
-        <input type="text" id="postalCode" formControlName="postalCode" class="form-control" />
-        <div *ngIf="restaurantForm.get('location.postalCode')?.invalid && restaurantForm.get('location.postalCode')?.touched" class="text-danger">
-          <small *ngIf="restaurantForm.get('location.postalCode')?.errors?.['required']">Postal Code is required.</small>
-          <small *ngIf="restaurantForm.get('location.postalCode')?.errors?.['pattern']">Invalid postal code format.</small>
+
+        <div class="mb-3">
+            <label for="websiteURL" class="form-label">Website URL</label>
+            <input type="url" id="websiteURL" formControlName="websiteURL" class="form-control" />
         </div>
-      </div>
-    </div>
-  
-    <div class="mb-3">
-      <label for="websiteURL" class="form-label">Website URL</label>
-      <input type="url" id="websiteURL" formControlName="websiteURL" class="form-control" />
-    </div>
-  
-    <button type="submit" class="btn btn-primary" [disabled]="restaurantForm.invalid">Submit</button>
-  </form>
-  
+
+        <button type="submit" class="btn btn-primary" [disabled]="restaurantForm.invalid">Submit</button>
+    </form>
+</div>
